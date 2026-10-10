@@ -7,6 +7,13 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    optimizeDeps: {
+      // Prebundle the complete portfolio graph together so late route discovery
+      // cannot give a live preview two generations of React's hook dispatcher.
+      include: ["react", "react-dom/client", "react/jsx-runtime", "react/jsx-dev-runtime", "@radix-ui/react-slot", "lucide-react", "class-variance-authority", "clsx", "tailwind-merge"],
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
