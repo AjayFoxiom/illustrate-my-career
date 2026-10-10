@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUp, ArrowUpRight, Braces, Check, Code2, Database, Download, FileCheck2, GraduationCap, Layers, MapPin, Menu, Moon, Server, ShieldCheck, Sun, Terminal, X } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Braces, Check, Code2, Database, Download, FileCheck2, GraduationCap, Layers, MapPin, Menu, Moon, Server, ShieldCheck, Sun, Terminal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import avatar from "@/assets/ajay-avatar.png";
 import resume from "@/assets/resume.pdf.asset.json";
@@ -40,14 +40,14 @@ function Index() {
           entry.target.classList.add("visible");
           if (entry.target.id) setActive(entry.target.id);
           entry.target.querySelectorAll<HTMLElement>("[data-count]").forEach((element) => {
-            if (element.dataset.animated) return;
-            element.dataset.animated = "true";
-            const target = Number(element.dataset.count);
+            if (element.dataset['animated']) return;
+            element.dataset['animated'] = "true";
+            const target = Number(element.dataset['count']);
             const start = performance.now();
             const tick = (time: number) => {
               const progress = Math.min((time - start) / 1100, 1);
               const value = target * (1 - Math.pow(1 - progress, 3));
-              element.textContent = (Number.isInteger(target) ? Math.round(value).toString() : value.toFixed(1)) + (element.dataset.suffix || "");
+              element.textContent = (Number.isInteger(target) ? Math.round(value).toString() : value.toFixed(1)) + (element.dataset['suffix'] || "");
               if (progress < 1) requestAnimationFrame(tick);
             };
             if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) requestAnimationFrame(tick);
