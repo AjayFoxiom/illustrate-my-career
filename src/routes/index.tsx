@@ -219,8 +219,21 @@ function Index() {
     const mailtoBody = encodeURIComponent(
       `Hello Ajay,\n\n${formData.message.trim()}\n\nBest regards,\n${formData.name.trim()}\nEmail: ${formData.email.trim()}`
     );
-    window.location.href = `mailto:ajayaj2002nov@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+    window.location.href = `mailto:ajay02.dev@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     setSubmitted(true);
+  };
+
+  const openGmailCompose = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const width = 680;
+    const height = 700;
+    const left = Math.max(0, Math.round((window.screen.width - width) / 2));
+    const top = Math.max(0, Math.round((window.screen.height - height) / 2));
+    window.open(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=ajay02.dev@gmail.com",
+      "gmail_compose",
+      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
   };
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -308,7 +321,7 @@ function Index() {
     <div className="preloader" aria-hidden="true">ajay<span>.</span></div>
     <header className="site-header"><div className="container nav-inner">
       <nav aria-label="Main navigation" className={`nav-links ${menu ? "open" : ""}`}>{navigation.map((item) => <a key={item} href={`#${item.toLowerCase()}`} className={active === item.toLowerCase() ? "active" : ""} onClick={() => setMenu(false)}>{item}</a>)}</nav>
-      <div className="nav-actions"><Button variant="ghost" size="icon" aria-label={light ? "Switch to dark theme" : "Switch to light theme"} title={light ? "Dark theme" : "Light theme"} onClick={() => setLight(!light)}>{light ? <Moon /> : <Sun />}</Button><Button variant="outline" asChild className="nav-contact"><a href="mailto:ajayaj2002nov@gmail.com">Let’s talk <ArrowUpRight /></a></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label={menu ? "Close navigation" : "Open navigation"} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button></div>
+      <div className="nav-actions"><Button variant="ghost" size="icon" aria-label={light ? "Switch to dark theme" : "Switch to light theme"} title={light ? "Dark theme" : "Light theme"} onClick={() => setLight(!light)}>{light ? <Moon /> : <Sun />}</Button><Button variant="outline" asChild className="nav-contact"><a href="mailto:ajay02.dev@gmail.com">Let’s talk <ArrowUpRight /></a></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label={menu ? "Close navigation" : "Open navigation"} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button></div>
     </div></header>
 
     <main>
@@ -371,11 +384,18 @@ function Index() {
               I’m currently available for full-time full stack developer roles, high-impact projects, and technical collaborations. Reach out using the form or connect directly through any of the channels below.
             </p>
             <div className="contact-channels">
-              <a className="contact-channel-item" href="mailto:ajayaj2002nov@gmail.com" aria-label="Send email to ajayaj2002nov@gmail.com">
+              <a
+                className="contact-channel-item"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=ajay02.dev@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={openGmailCompose}
+                aria-label="Compose email to ajay02.dev@gmail.com in Gmail"
+              >
                 <div className="contact-channel-icon"><Mail /></div>
                 <div className="contact-channel-text">
                   <small>Direct Email</small>
-                  <strong>ajayaj2002nov@gmail.com</strong>
+                  <strong>ajay02.dev@gmail.com</strong>
                 </div>
               </a>
               <a className="contact-channel-item" href="tel:+918606865580" aria-label="Call +91 8606865580">
@@ -404,7 +424,7 @@ function Index() {
               <div className="contact-success" role="alert">
                 <div className="contact-success-icon"><Check /></div>
                 <h4>Message drafted!</h4>
-                <p>Your default email client has been opened with your message ready to send. If it didn’t open, click <a href="mailto:ajayaj2002nov@gmail.com">here to email directly</a>.</p>
+                <p>Your default email client has been opened with your message ready to send. If it didn’t open, click <a href="mailto:ajay02.dev@gmail.com">here to email directly</a>.</p>
                 <Button variant="outline" size="sm" onClick={() => { setSubmitted(false); setFormData({ name: "", email: "", subject: "", message: "" }); }}>
                   Send another message
                 </Button>
